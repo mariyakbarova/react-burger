@@ -1,0 +1,61 @@
+.header {
+    box-sizing: border-box;
+    min-height: 88px;
+    max-width: 1920px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #1C1C21;
+}
+
+.nav {
+    min-width: 1280px;
+    min-height: 56px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+}
+
+.box {
+    max-width: 383px;
+    max-height: 56px;
+    display: flex;
+    gap: 8px;
+    padding: 0;
+}
+
+.constructor {
+    display: flex;
+    padding: 16px 20px;
+
+    font-family: 'JetBrains Mono';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.icon {
+    min-width: 24px;
+    max-height: 24px;
+}
+
+.order {
+    min-width: 197px;
+    display: flex;
+    padding: 16px 20px;
+
+}
+
+.logo {
+    width: 289px;
+}
+
+.account {
+    align-items: center;
+    display: flex;
+    padding: 16px 20px;
+}
+
+
