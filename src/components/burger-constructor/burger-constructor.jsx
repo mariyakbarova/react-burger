@@ -1,4 +1,4 @@
-import styles from "./burger-generate.module.css";
+import styles from "./burger-constructor.module.css";
 import {
   ConstructorElement,
   DragIcon,
@@ -6,7 +6,7 @@ import {
   Button,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 
-export default function BurgerGenerate() {
+export default function BurgerConstructor() {
   return (
     <section className={`${styles.generate} mt-25  pr-2`}>
       <ul className={styles.generateList}>

@@ -1,0 +1,8 @@
+
+.imageDone {
+    background-image: url(../../images/done.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    background-size: 120px 120px;
+}

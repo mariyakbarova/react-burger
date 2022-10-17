@@ -1,13 +1,12 @@
 import React from "react";
 import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
+import styles from './burger-ingredients.module.css'
 
-export default function BurgerIngridientsTab() {
+export default function BurgerIngredientsTab() {
   const [current, setCurrent] = React.useState("one");
   return (
-    <section >
-
-
-      <div style={{ display: "flex" }}>
+    <>
+      <div style={styles.ingredientsInfo}>
         <Tab value="one" active={current === "one"} onClick={setCurrent}>
           Булки
         </Tab>
@@ -19,6 +18,6 @@ export default function BurgerIngridientsTab() {
         </Tab>
       </div>
  
-    </section>
+    </>
   );
 }
