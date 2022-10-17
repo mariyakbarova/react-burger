@@ -6,7 +6,7 @@ import {
   Button,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 
-export default function BurgerConstructor() {
+export default function BurgerConstructor({onClick}) {
   return (
     <section className={`${styles.generate} mt-25  pr-2`}>
       <ul className={styles.generateList}>
@@ -107,7 +107,7 @@ export default function BurgerConstructor() {
         <p className="text text_type_digits-medium mr-2">610</p>
         <CurrencyIcon type="primary" />
         </div>
-        <Button type="primary" size="large">
+        <Button type="primary" size="large" htmlType="button" onClick={onClick}>
           Оформить заказ
         </Button>
       </div>

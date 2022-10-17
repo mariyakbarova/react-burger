@@ -19,14 +19,15 @@ export default function App() {
     apiBurger
       .getIngredients()
       .then(({ sucсess, data }) => {
-        if (sucсess === true) {
+        if (sucсess) {
           setIngredients(data);
         }
-        console.dir(data);
       })
-      .catch(console.log);
+      .catch((err) => {
+        console.log(err)
+      })
   }, []);
-
+console.log(ingredients);
 
   const handleIngredientsModal = (event, element) => {
     setOpenIngredientsModal(!openIngredientsModal);
@@ -37,7 +38,7 @@ export default function App() {
     <>
       <AppHeader />
       <main className={styles.main}>
-        <BurgerIngredients
+        <BurgerIngredients  
           ingredients={ingredients}
           onClick={handleIngredientsModal}
         />

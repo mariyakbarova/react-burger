@@ -1,11 +1,12 @@
-import React from "react"
+import React from "react";
+import PropTypes from 'prop-types';
+import { ingredientType } from '../../utils/components-prop-types.js';
 import BurgerIngredientsTab from "../burger-ingredients-tab/burger-ingredients-tab"
 import styles from './burger-ingredients.module.css'
 import IngredientsSet from '../ingredients-set/ingredients-set.jsx';
-import BurgerIngredientsTab from "../burger-ingredients-tab/burger-ingredients-tab";
-    
+
 export default function BurgerIngredients({ ingredients, onClick }) {
-    const [current, setCurrent] = useState('bun')
+
     return (
       <section>
         <h3 className="text text_type_main-large mt-10 mb-5">

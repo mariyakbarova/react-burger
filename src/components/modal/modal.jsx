@@ -21,6 +21,7 @@ export default function Modal ({children, onClose}) {
     }, [])
 
     return createPortal (
+        <>
         <ModalOverlay onClose={onClose}>
             <div className="modalPopup">
         <button className={`${styles.modalExit} mt-15 mr-10`} onClick={onClose}>
@@ -29,5 +30,7 @@ export default function Modal ({children, onClose}) {
         {children}
         </div>
         </ModalOverlay>
+        </>, 
+        document.getElementById('modals')
     )
 }

@@ -7,7 +7,7 @@ export default function IngredientCard({ ingredient, onClick }) {
     <button className={styles.cardButton} onClick={(event) => onClick(event, ingredient)}>
       <img src={ingredient.image} alt={ingredient.name} />
       <Counter id={ingredient._id} count={ingredient.count} size="small" />
-      <div style={{ display: 'flex', alignItems: 'flex-end' }}>
+      <div className={styles.cardContent}>
         <p className="text text_type_digits-default pt-2 pr-2">{ingredient.price}</p>
         <CurrencyIcon type="primary" />
       </div>
