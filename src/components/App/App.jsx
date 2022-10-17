@@ -5,7 +5,7 @@ import AppHeader from "../app-header/app-header";
 import styles from "./app.module.css";
 import BurgerIngredients from "../burger-ingedients/burger-ingredients";
 import BurgerConstructor from "../burger-constructor/burger-constructor";
-import Modal from "../modal/modal";
+import Modal from "../ingredients-set/modal";
 import OrderDetails from "../order-details/order-details";
 import IngredientDetails from "../ingredient-details/ingredient-details";
 
