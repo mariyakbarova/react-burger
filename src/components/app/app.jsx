@@ -19,9 +19,9 @@ export default function App() {
     apiBurger
       .getIngredients()
       .then(({ sucсess, data }) => {
-        if (sucсess) {
+        // if (sucсess) {
           setIngredients(data);
-        }
+        // }
       })
       .catch((err) => {
         console.log(err)
