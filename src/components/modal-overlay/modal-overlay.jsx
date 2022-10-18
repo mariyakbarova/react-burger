@@ -1,7 +1,6 @@
-import React from 'react'
 import styles from './modal-overlay.module.css'
 
-export default function ModalOverlay ({ onClose, children }) {
+export default function ModalOverlay ({ onClose }) {
 
     const closeModalOverlay = (e) => {
         if (e.target.classList.contains(styles.modalOverlay)) {
@@ -11,7 +10,7 @@ export default function ModalOverlay ({ onClose, children }) {
 
     return (
         <div className={styles.modalOverlay} onClick={closeModalOverlay}>
-            {children}
+            
         </div>
     )
 }

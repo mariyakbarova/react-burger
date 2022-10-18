@@ -1,5 +1,4 @@
-import { ConstructorElement } from "@ya.praktikum/react-developer-burger-ui-components";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { apiBurger } from "../api/api";
 import AppHeader from "../app-header/app-header";
 import styles from "./app.module.css";
@@ -9,53 +8,59 @@ import Modal from "../modal/modal";
 import OrderDetails from "../order-details/order-details";
 import IngredientDetails from "../ingredient-details/ingredient-details";
 
-export default function App() {
-  const [ingredients, setIngredients] = useState([]);
-  const [element, setElement] = useState();
-  const [openIngredientsModal, setOpenIngredientsModal] = useState();
-  const [openOrderModal, setOpenOrderModal] = useState(false);
 
-  useEffect(() => {
-    apiBurger
-      .getIngredients()
-      .then(({ sucсess, data }) => {
-        // if (sucсess) {
-          setIngredients(data);
-        // }
-      })
-      .catch((err) => {
-        console.log(err)
-      })
-  }, []);
-console.log(ingredients);
+export default function App () {
+  const [ingredients, setIngredients] = React.useState([]);
+  const [element, setElement] = React.useState();
+  const [openOrderModal, setOrderOpenModal] = React.useState();
+  const [openIngredientsModal, setOpenIngredientModal] = React.useState();
 
-  const handleIngredientsModal = (event, element) => {
-    setOpenIngredientsModal(!openIngredientsModal);
+  React.useEffect(() => {
+    apiBurger.getIngredients()
+      .then(({ success, data }) => {
+        if (success) {
+          setIngredients(data)
+        }
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  }, [])
+  console.dir(ingredients)
+
+  const handleElementModal = (event, element) => {
+    setOpenIngredientModal(!openIngredientsModal);
     setElement(element);
-  };
+  }
 
   return (
     <>
       <AppHeader />
       <main className={styles.main}>
-        <BurgerIngredients  
-          ingredients={ingredients}
-          onClick={handleIngredientsModal}
-        />
-        <BurgerConstructor onClick={setOpenOrderModal} />
+        <BurgerIngredients ingredients={ingredients} onClick={handleElementModal} />
+        <BurgerConstructor onClick={setOrderOpenModal} />
       </main>
 
       {!!openIngredientsModal && (
-        <Modal onClose={() => setOpenIngredientsModal(false)} title='Детали ингредиента'>
-          <IngredientDetails ingredient={element}/>
+        <Modal onClose={() => setOpenIngredientModal(false)} title='Детали ингредиента'>
+          <IngredientDetails ingredient={element} />
         </Modal>
       )}
 
       {!!openOrderModal && (
-        <Modal onClose={() => setOpenOrderModal(false)}>
+        <Modal onClose={() => setOrderOpenModal(false)}>
           <OrderDetails />
         </Modal>
       )}
+
     </>
-  );
+  )
 }
+
+
+
+
+
+
+
+

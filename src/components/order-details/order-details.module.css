@@ -1,8 +1,12 @@
 
 .imageDone {
-    background-image: url(../../images/done.png);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-color: transparent;
-    background-size: 120px 120px;
+        width: 120px;
+        height: 120px;
+        border: none;
+}
+
+.modalInfo {
+    display: grid;
+    align-content: center;
+    justify-items: center;
 }

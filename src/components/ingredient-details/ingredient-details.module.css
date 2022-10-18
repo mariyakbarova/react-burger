@@ -1,0 +1,25 @@
+.description {
+    display: grid;
+    grid-template-columns: 120px 112px 112px 112px;
+    list-style: none;
+    padding: 0;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.name {
+    padding: 0;
+    text-align: center;
+}
+
+.ingredientDetails{
+    display: grid;
+    align-items: center;
+}
+
+.about {
+    display: grid;
+    gap: 8px;
+    align-items: center;
+    text-align: center;
+}
