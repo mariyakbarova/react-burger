@@ -19,7 +19,7 @@ export default function Modal({ children, onClose, title }) {
     };
   }, [])
 
-  return React.createPortal((
+  return createPortal((
     <>
       <ModalOverlay onClose={onClose} />
         <div className={`${styles.modalPopup} pt-10`}>
@@ -32,8 +32,7 @@ export default function Modal({ children, onClose, title }) {
           </button>
           {children}
         </div>
-      {/* </ModalOverlay> */}
-    </>,
-    document.getElementById('modals')
-  ));
+    </>),
+    document.getElementById('modals'));
 }
+
