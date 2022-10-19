@@ -52,15 +52,7 @@ export default function App () {
           <OrderDetails />
         </Modal>
       )}
-
     </>
   )
 }
-
-
-
-
-
-
-
 

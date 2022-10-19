@@ -3,10 +3,9 @@ import PropTypes from 'prop-types';
 import { ingredientType } from '../../utils/components-prop-types.js';
 import IngredientCard from '../ingredient-card/ingredient-card.jsx';
 
-export default function IngredientsSet({ ingredients, type, onClick }) {
+export default function IngredientsSet({ ingredients, type, onClick, sectionRef }) {
   return (
-    <section className='pb-10'>
-      {/* <h3 className="text text_type_main-medium mb-6">{title}</h3> */}
+    <section className='pb-10' ref={sectionRef}>
       <ul className={styles.set}>
         {ingredients
           .filter((ingredient) => ingredient.type === type)
