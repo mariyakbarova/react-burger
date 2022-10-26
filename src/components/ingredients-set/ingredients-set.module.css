@@ -9,3 +9,11 @@
     row-gap: 55px;
     grid-template-columns: repeat(2, 272px);
   }
+
+.title {
+  font-size: 24px;
+  line-height: 30px;
+  font-family: 'Jet Brains Mono';
+  color: white;
+  max-width: 600px;
+}  
