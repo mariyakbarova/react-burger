@@ -16,14 +16,17 @@ export default function BurgerIngredients({ ingredients, onClick }) {
 
   const scrollToRef = (ref) => {
     if (ref === "bun") {
+      setCurrentTab('bun');
       bunsRef.current.scrollIntoView();
     }
 
     if (ref === "sauce") {
+      setCurrentTab('sauce');
       sauceRef.current.scrollIntoView();
     }
 
     if (ref === "main") {
+      setCurrentTab('main');
       ingredientRef.current.scrollIntoView();
     }
   };
@@ -47,8 +50,8 @@ export default function BurgerIngredients({ ingredients, onClick }) {
       },
       {
         root: containerRef.current,
-        rootMargin: "0px",
-        threshold: 0,
+        rootMargin: "10px",
+        threshold: .7,
       }
     );
     observer.observe(bunsRef.current);
