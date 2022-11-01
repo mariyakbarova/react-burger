@@ -12,22 +12,22 @@ export default function BurgerIngredients({ ingredients, onClick }) {
   const sauceRef = useRef();
   const ingredientRef = useRef();
 
-  const [currentTab, setCurrentTab] = useState("buns");
+  const [currentTab, setCurrentTab] = useState("bun");
 
   const scrollToRef = (ref) => {
     if (ref === "bun") {
       setCurrentTab('bun');
-      bunsRef.current.scrollIntoView();
+      bunsRef.current.scrollIntoView({behavior: 'smooth'});
     }
 
     if (ref === "sauce") {
       setCurrentTab('sauce');
-      sauceRef.current.scrollIntoView();
+      sauceRef.current.scrollIntoView({behavior: 'smooth'});
     }
 
     if (ref === "main") {
       setCurrentTab('main');
-      ingredientRef.current.scrollIntoView();
+      ingredientRef.current.scrollIntoView({behavior: 'smooth'});
     }
   };
 
@@ -50,7 +50,7 @@ export default function BurgerIngredients({ ingredients, onClick }) {
       },
       {
         root: containerRef.current,
-        rootMargin: "10px",
+        rootMargin: '0px 0px -90% 0px',
         threshold: .7,
       }
     );

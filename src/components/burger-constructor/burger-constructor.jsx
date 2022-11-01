@@ -6,11 +6,27 @@ import {
   Button,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 
-export default function BurgerConstructor({onClick}) {
+
+
+
+export default function BurgerConstructor({ onClick, ingredients }) {
   return (
     <section className={`${styles.generate} mt-25  pr-2`}>
       <ul className={styles.generateList}>
-        <li className='mr-4'>
+        {ingredients.map((ingredient) => (
+          <li className="mr-4" >
+            {ingredient.type !== 'bun' && <DragIcon type='primary'/>}
+            <ConstructorElement
+              type={ingredient.type}
+              isLocked={ingredient.type === 'bun'}
+              text={ingredient.name}
+              price={ingredient.price}
+              thumbnail={ingredient.image}
+            />
+          </li>
+        ))}
+
+        {/* <li className="mr-4">
           <ConstructorElement
             type="top"
             isLocked={true}
@@ -89,9 +105,9 @@ export default function BurgerConstructor({onClick}) {
               }
             />
           </li>
-        </div>
+        </div> */}
 
-        <li className='mr-4'>
+        {/* <li className="mr-4">
           <ConstructorElement
             type="bottom"
             isLocked={true}
@@ -99,13 +115,13 @@ export default function BurgerConstructor({onClick}) {
             price={20}
             thumbnail={"https://code.s3.yandex.net/react/code/bun-02.png"}
           />
-        </li>
+        </li> */}
       </ul>
 
       <div className={`${styles.placeOrder} pt-10 `}>
         <div className={styles.priceBox}>
-        <p className="text text_type_digits-medium mr-2">610</p>
-        <CurrencyIcon type="primary" />
+          <p className="text text_type_digits-medium mr-2">610</p>
+          <CurrencyIcon type="primary" />
         </div>
         <Button type="primary" size="large" htmlType="button" onClick={onClick}>
           Оформить заказ
