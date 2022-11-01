@@ -35,6 +35,17 @@ class Api {
             .then(this._checkResponce);
     }
     // тут дальше пиши другие методы
-}
+
+    requestOrderDetails(idList) {
+        const options = {
+          method: 'POST',
+          headers: this._defaultHeaders,
+          body: JSON.stringify({
+            ingredients: idList
+          })
+        }
+        return this._request(this._makeUrl(this._orderEndpoint), options)
+      }
+    }
 
 export const apiBurger = new Api (apiConfig);

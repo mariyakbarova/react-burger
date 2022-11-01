@@ -2,7 +2,7 @@ import React, { useCallback }from "react";
 import { apiBurger } from "../api/api";
 import AppHeader from "../app-header/app-header";
 import styles from "./app.module.css";
-import BurgerIngredients from "../burger-ingedients/burger-ingredients";
+import { BurgerIngredients } from "../burger-ingedients/burger-ingredients";
 import BurgerConstructor from "../burger-constructor/burger-constructor";
 import Modal from "../modal/modal";
 import OrderDetails from "../order-details/order-details";
@@ -11,6 +11,9 @@ import { getIngredientSuccess} from '../../services/actions/ingredients-list';
 import { deleteIngredientDetails } from '../../services/actions/ingredient-details';
 import { getOrderSuccess } from '../../services/actions/order-details';
 import { useDispatch, useSelector } from 'react-redux';
+import { getOrderNumber } from '../../services/actions/order-details';
+import { clearConstructor } from "../../services/actions/ingredients-constructor";
+
 
 
 export default function App () {
@@ -25,7 +28,6 @@ export default function App () {
 
   const constructorIngredientsList = useSelector(state => state.constructorList.ingredientsList);
   
-  console.log(constructorIngredientsList)
 
   React.useEffect(() => {
     apiBurger.getIngredients()
@@ -38,20 +40,20 @@ export default function App () {
   }, [dispatch])
   console.dir(ingredients)
 
-  const handleElementModal = (event, element) => {
-    setOpenIngredientModal(!openIngredientsModal);
-    setElement(element);
-  }
+  // const handleOrderOpenModal = (() => {
+  //   setOrderOpenModal(true)
+  //   apiBurger.requestOrderDetails(idList)
+  //     .then(({ order: {number} }) => {
+  //       dispatch(getOrderSuccess(number));
+  //     })
+  //     .catch((error) => {
+  //       console.log(error)
+  //     })
+  // })
 
   const handleOrderOpenModal = (() => {
     setOrderOpenModal(true)
-    apiBurger.requestOrderDetails(idList)
-      .then(({ order: {number} }) => {
-        dispatch(getOrderSuccess(number));
-      })
-      .catch((error) => {
-        console.log(error)
-      })
+    dispatch(getOrderNumber(idList))
   })
 
   const closeIngredientsModal = useCallback(() => {
@@ -60,19 +62,21 @@ export default function App () {
 
   const closeOrderModal = useCallback(() => {
     setOrderOpenModal(false)
+    dispatch(clearConstructor())
   }, [])
+
 
   return (
     <>
       <AppHeader />
       <main className={styles.main}>
-        <BurgerIngredients ingredients={ingredients} onClick={handleElementModal} />
+        <BurgerIngredients/>
         <BurgerConstructor onClick={handleOrderOpenModal} ingredients={constructorIngredientsList}/>
       </main>
 
        {!!openIngredientsModal && (
         <Modal onClose={closeIngredientsModal} title='Детали ингредиента'>
-          <IngredientDetails ingredient={element} />
+          <IngredientDetails/>
         </Modal>
       )} 
 

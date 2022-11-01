@@ -5,7 +5,7 @@ import BurgerIngredientsTab from "../burger-ingredients-tab/burger-ingredients-t
 import styles from "./burger-ingredients.module.css";
 import IngredientsSet from "../ingredients-set/ingredients-set.jsx";
 
-export default function BurgerIngredients({ ingredients, onClick }) {
+function BurgerIngredientsFunction() {
 
   const containerRef = useRef();
   const bunsRef = useRef();
@@ -63,25 +63,19 @@ export default function BurgerIngredients({ ingredients, onClick }) {
     <section>
       <h3 className="text text_type_main-large mt-10 mb-5">Соберите бургер</h3>
       <BurgerIngredientsTab onClick={scrollToRef} activeTab={currentTab} />
-      <div className={styles.ingredientsScroll}>
+      <div className={styles.ingredientsScroll} ref={containerRef}>
         <IngredientsSet
-          ingredients={ingredients}
           sectionRef={bunsRef}
-          onClick={onClick}
           type="bun"
           title="Булки"
         />
         <IngredientsSet
-          ingredients={ingredients}
           sectionRef={sauceRef}
-          onClick={onClick}
           type="sauce"
           title="Соусы"
         />
         <IngredientsSet
-          ingredients={ingredients}
           sectionRef={ingredientRef}
-          onClick={onClick}
           type="main"
           title="Начинки"
         />
@@ -90,6 +84,8 @@ export default function BurgerIngredients({ ingredients, onClick }) {
   );
 }
 
-BurgerIngredients.propTypes = {
-  ingredients: PropTypes.arrayOf(ingredientType).isRequired,
-};
+// BurgerIngredients.propTypes = {
+//   ingredients: PropTypes.arrayOf(ingredientType).isRequired,
+// };
+
+export const BurgerIngredients = React.memo(BurgerIngredientsFunction);

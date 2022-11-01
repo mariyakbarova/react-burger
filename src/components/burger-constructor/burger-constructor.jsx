@@ -6,6 +6,10 @@ import {
   Button,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 
+// import {useDrop} from 'react-dnd';
+import {nanoid} from 'nanoid';
+import { setBun, addIngredient, deleteIngredient, moveIngredient  } from "../../services/actions/ingredients-constructor";
+import { useDispatch, useSelector} from 'react-redux';
 
 
 
@@ -130,3 +134,9 @@ export default function BurgerConstructor({ onClick, ingredients }) {
     </section>
   );
 }
+
+
+
+// {ConstructorElement.ingredient.type = 'top'? ConstructorElement.ingredient.text = {`${ingredient.name} +'верх'`}
+// : 
+//            ConstructorElement.ingredient.text = {`${ingredient.name} +'низ'`}}

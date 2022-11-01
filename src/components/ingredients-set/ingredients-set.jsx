@@ -2,8 +2,12 @@ import styles from './ingredients-set.module.css';
 import PropTypes from 'prop-types';
 import { ingredientType } from '../../utils/components-prop-types.js';
 import IngredientCard from '../ingredient-card/ingredient-card.jsx';
+import { useSelector } from 'react-redux';
 
-export default function IngredientsSet({ ingredients, type, onClick, sectionRef, title }) {
+export default function IngredientsSet({ type, sectionRef, title }) {
+
+  const ingredients = useSelector(state => state.ingredientList.ingredientList);
+
   return (
     <section className='pb-10' ref={sectionRef}>
       <h1 className='text text_type_main-medium mb-6'>{title}</h1>
@@ -14,7 +18,6 @@ export default function IngredientsSet({ ingredients, type, onClick, sectionRef,
             <IngredientCard
               key={ingredient._id}
               ingredient={ingredient}
-              onClick={onClick}
             />
           ))
           }
@@ -24,5 +27,6 @@ export default function IngredientsSet({ ingredients, type, onClick, sectionRef,
 }
 
 IngredientsSet.propTypes = {
-    ingredients: PropTypes.arrayOf(ingredientType).isRequired,
-  }
+  type: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+}
