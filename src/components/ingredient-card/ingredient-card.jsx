@@ -10,6 +10,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { setIngredientsDetails } from "../../services/actions/ingredient-details";
 
 export default function IngredientCard({ ingredient }) {
+
   // const elements = useSelector(
   //   (state) => state.constructorList.constructorList
   // );
@@ -27,23 +28,23 @@ export default function IngredientCard({ ingredient }) {
     dispatch(setIngredientsDetails(ingredient));
   };
 
-  // const [, dragIngredient] = useDrag(
-  //   () => ({
-  //     type: "card",
-  //     item: {
-  //       ingredient,
-  //       id: ingredient._id,
-  //       type: ingredient.type,
-  //     },
-  //   }),
-  //   []
-  // );
+  const [, dragIngredient] = useDrag(
+    () => ({
+      type: 'card',
+      item: {
+        ingredient,
+        id: ingredient._id,
+        type: ingredient.type,
+      },
+    }),
+    []
+  );
 
   return (
     <button
       className={styles.item}
       onClick={handleIngredientClick}
-      // ref={dragIngredient}
+      ref={dragIngredient}
     >
       {/* {count > 0 ? (
         <Counter id={ingredient._id} count={count} size="small" />
@@ -57,7 +58,7 @@ export default function IngredientCard({ ingredient }) {
         {ingredient.name}
       </p>
     </button>
-  );
+  ); 
 }
 
 IngredientCard.propTypes = {

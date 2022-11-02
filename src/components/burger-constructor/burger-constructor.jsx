@@ -7,26 +7,48 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 
 // import {useDrop} from 'react-dnd';
-import {nanoid} from 'nanoid';
-import { setBun, addIngredient, deleteIngredient, moveIngredient  } from "../../services/actions/ingredients-constructor";
-import { useDispatch, useSelector} from 'react-redux';
-
-
+import { nanoid } from "nanoid";
+import {
+  setBun,
+  addIngredient,
+  deleteIngredient,
+  moveIngredient,
+} from "../../services/actions/ingredients-constructor";
+import { useDispatch, useSelector } from "react-redux";
+import { useDrop } from "react-dnd";
 
 export default function BurgerConstructor({ onClick }) {
+  const dispatch = useDispatch();
+  const ingredients = useSelector(
+    (state) => state.constructorList.constructorList
+  );
 
-const ingredients = useSelector((state) => state.constructorList.constructorList);
+  const [, dropIngredient] = useDrop(() => ({
+    accept: "card",
+    drop: (element) => insertIngredient(element.ingredient),
+  }));
 
+  const insertIngredient = (element) => {
+    element = {...element, id: nanoid()}
+
+    if (element.type === 'bun') {
+      dispatch(setBun(element))
+    }
+
+    if (element.type !== 'bun') {
+      dispatch(addIngredient(element))
+    }
+  };
 
   return (
-    <section className={`${styles.generate} mt-25  pr-2`}>
+    <section ref={dropIngredient} className={`${styles.generate} mt-25  pr-2`}>
       <ul className={styles.generateList}>
         {ingredients.map((ingredient) => (
-          <li className="mr-4" >
-            {ingredient.type !== 'bun' && <DragIcon type='primary'/>}
+          <li className="mr-4">
+            {ingredient.type !== "bun" && <DragIcon type="primary" />}
             <ConstructorElement
-              type={ingredient.type}
-              isLocked={ingredient.type === 'bun'}
+              type={ingredient.type} // у булок есть тип 'top' и 'button' - от этого зависит положение булок и текст
+              isLocked={ingredient.type === "bun"}
               text={ingredient.name}
               price={ingredient.price}
               thumbnail={ingredient.image}
@@ -139,8 +161,6 @@ const ingredients = useSelector((state) => state.constructorList.constructorList
   );
 }
 
-
-
 // {ConstructorElement.ingredient.type = 'top'? ConstructorElement.ingredient.text = {`${ingredient.name} +'верх'`}
-// : 
+// :
 //            ConstructorElement.ingredient.text = {`${ingredient.name} +'низ'`}}

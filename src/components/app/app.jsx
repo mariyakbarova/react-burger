@@ -5,7 +5,7 @@ import styles from "./app.module.css";
 import { BurgerIngredients } from "../burger-ingedients/burger-ingredients";
 import BurgerConstructor from "../burger-constructor/burger-constructor";
 import Modal from "../modal/modal";
-import OrderDetails from "../order-details/order-details";
+import {OrderDetails} from "../order-details/order-details";
 import IngredientDetails from "../ingredient-details/ingredient-details";
 import { getIngredientSuccess } from "../../services/actions/ingredients-list";
 import { deleteIngredientDetails } from "../../services/actions/ingredient-details";
@@ -14,6 +14,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { getOrderNumber } from "../../services/actions/order-details";
 import { clearConstructor } from "../../services/actions/ingredients-constructor";
 import { getIngredientsList } from "../../services/actions/ingredients-list";
+
+import { HTML5Backend } from "react-dnd-html5-backend";
+import { DndProvider } from "react-dnd";
 
 export default function App() {
   const [openOrderModal, setOrderOpenModal] = React.useState();
@@ -37,6 +40,7 @@ export default function App() {
     dispatch(getOrderNumber(idList));
   };
 
+
   const closeIngredientsModal = useCallback(() => {
     dispatch(deleteIngredientDetails());
   }, [dispatch]);
@@ -47,7 +51,8 @@ export default function App() {
   }, []);
 
   return (
-    <>
+    <DndProvider backend={HTML5Backend}>
+
       <AppHeader />
       <main className={styles.main}>
         <BurgerIngredients />
@@ -67,6 +72,6 @@ export default function App() {
           <OrderDetails />
         </Modal>
       )}
-    </>
+    </DndProvider>
   );
 }

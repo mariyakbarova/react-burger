@@ -15,9 +15,12 @@ class Api {
 
     _checkResponce(res) {
         if (res.ok) {
-            return res.json();
+           console.log(res.ok)
+            return res.json()
           }
-          return res.json().then(err => {
+          return res.json()
+          .then( 
+            err => {
             err.code = res.status;
         
             return Promise.reject(err)
@@ -38,7 +41,7 @@ class Api {
     // тут дальше пиши другие методы
 
     _request(url, options) {
-      return fetch(url, options).then(this._handleResponse)
+      return fetch(url, options).then(this._checkResponce)
     }
 
     requestOrderDetails(idList) {
