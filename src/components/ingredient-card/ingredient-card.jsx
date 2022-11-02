@@ -50,6 +50,7 @@ export default function IngredientCard({ ingredient }) {
         <Counter id={ingredient._id} count={count} size="small" />
       ) : null} */}
       <img className="ml-4 mr-4" src={ingredient.image} alt={ingredient.name} />
+      <Counter id={ingredient._id} size="small" />
       <div className={`${styles.price} mt-2 mb-2`}>
         <p className="text text_type_digits-default mr-2">{ingredient.price}</p>
         <CurrencyIcon type="primary" />

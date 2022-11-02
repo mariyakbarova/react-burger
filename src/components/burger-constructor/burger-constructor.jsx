@@ -6,7 +6,6 @@ import {
   Button,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 
-// import {useDrop} from 'react-dnd';
 import { nanoid } from "nanoid";
 import {
   setBun,
@@ -16,12 +15,13 @@ import {
 } from "../../services/actions/ingredients-constructor";
 import { useDispatch, useSelector } from "react-redux";
 import { useDrop } from "react-dnd";
+import { orderDetailsReducer } from "../../services/reducers/order-details";
+import { useMemo } from "react";
 
 export default function BurgerConstructor({ onClick }) {
   const dispatch = useDispatch();
-  const ingredients = useSelector(
-    (state) => state.constructorList.constructorList
-  );
+  const ingredients = useSelector((state) => state.constructorList.constructorList);
+  const buns = useSelector((state) => state.constructorList.bun); //каким образом делать map по разным массивам, если используется только один компонент для отрисовки?
 
   const [, dropIngredient] = useDrop(() => ({
     accept: "card",
@@ -29,22 +29,27 @@ export default function BurgerConstructor({ onClick }) {
   }));
 
   const insertIngredient = (element) => {
-    element = {...element, id: nanoid()}
+    element = { ...element, id: nanoid() };
 
-    if (element.type === 'bun') {
-      dispatch(setBun(element))
+    if (element.type === "bun") {
+      dispatch(setBun(element));
     }
 
-    if (element.type !== 'bun') {
-      dispatch(addIngredient(element))
+    if (element.type !== "bun") {
+      dispatch(addIngredient(element));
     }
   };
+
+  const orderSum = useMemo(() => (
+    ingredients.reduce((acc, { price }) => acc + price, 0) +  // acc -аккумулятор, работа редьюса для подсчёта, формула из интернета
+    (buns.reduce((acc, { price }) => acc + price, 0) * 2)
+), [ingredients, buns]);
 
   return (
     <section ref={dropIngredient} className={`${styles.generate} mt-25  pr-2`}>
       <ul className={styles.generateList}>
         {ingredients.map((ingredient) => (
-          <li className="mr-4">
+          <li key={ingredient.id} className="mr-4">
             {ingredient.type !== "bun" && <DragIcon type="primary" />}
             <ConstructorElement
               type={ingredient.type} // у булок есть тип 'top' и 'button' - от этого зависит положение булок и текст
@@ -148,15 +153,17 @@ export default function BurgerConstructor({ onClick }) {
         </li> */}
       </ul>
 
+      { buns.length > 0 ? 
       <div className={`${styles.placeOrder} pt-10 `}>
         <div className={styles.priceBox}>
-          <p className="text text_type_digits-medium mr-2">610</p>
+          <p className="text text_type_digits-medium mr-2">{orderSum}</p>
           <CurrencyIcon type="primary" />
         </div>
         <Button type="primary" size="large" htmlType="button" onClick={onClick}>
           Оформить заказ
         </Button>
       </div>
+      : null }
     </section>
   );
 }
