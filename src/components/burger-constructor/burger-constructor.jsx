@@ -13,7 +13,11 @@ import { useDispatch, useSelector} from 'react-redux';
 
 
 
-export default function BurgerConstructor({ onClick, ingredients }) {
+export default function BurgerConstructor({ onClick }) {
+
+const ingredients = useSelector((state) => state.constructorList.constructorList);
+
+
   return (
     <section className={`${styles.generate} mt-25  pr-2`}>
       <ul className={styles.generateList}>

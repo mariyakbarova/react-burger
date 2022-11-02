@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 
 export default function IngredientsSet({ type, sectionRef, title }) {
 
-  const ingredients = useSelector(state => state.ingredientList.ingredientList);
+  const ingredients = useSelector(state => state.ingredientsList.ingredientsList);
 
   return (
     <section className='pb-10' ref={sectionRef}>

@@ -1,7 +1,7 @@
 import { SET_BUN, ADD_INGREDIENT, DELETE_INGREDIENT, MOVE_INGREDIENT} from '../actions/ingredients-constructor';
 
 export const ingredientsConstructorState = {
-    ingredientsList: [], // список элементов конструктора
+    constructorList: [], // список элементов конструктора
     bun: []
   }
 
@@ -17,13 +17,13 @@ export const constructorListReducer = (state = ingredientsConstructorState, acti
         case ADD_INGREDIENT: {
             return {
                 ...state,
-                ingredientsList: [...state.ingredientsList, action.payload]
+                constructorList: [...state.constructorList, action.payload]
             }
         }
         case DELETE_INGREDIENT: {
             return {
                 ...state,
-                ingredientsList: state.ingredientsList.filter((element) => element.id !== action.payload.id)
+                constructorList: state.constructorList.filter((element) => element.id !== action.payload.id)
             }
         }
 

@@ -1,13 +1,13 @@
 import { GET_INGREDIENT_REQUEST, GET_INGREDIENT_SUCCESS, GET_INGREDIENT_ERROR} from '../actions/ingredients-list';
 
 export const ingredientsListState = {
-    ingredientList: [],
+    ingredientsList: [],
     ingredientsRequest: false,
     ingredientsError: false,
     current: "bun"
 }
 
-export const ingredientListReducer = (state = ingredientsListState, action) => {
+export const ingredientsListReducer = (state = ingredientsListState, action) => {
     switch(action.type) {
         case GET_INGREDIENT_REQUEST: {
             return {
@@ -19,7 +19,7 @@ export const ingredientListReducer = (state = ingredientsListState, action) => {
         case GET_INGREDIENT_SUCCESS: {
             return {
                 ...state,
-                ingredientList: [...action.data],
+                ingredientsList: [...action.data],
                 ingredientsError: false
             }
         }
