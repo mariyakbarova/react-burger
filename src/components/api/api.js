@@ -1,13 +1,14 @@
 import { apiConfig } from "../burger.config";
 
 class Api {
-    constructor({ baseUrl, ingredients, defaultHeaders }) {
+    constructor({ baseUrl, ingredients, defaultHeaders, order }) {
         this._baseUrl = baseUrl;
         this._ingredientsEndpoint = ingredients;
         this._defaultHeaders = defaultHeaders;
+        this._orderEndpoint = order;
         // А ещё надо тут прибивать методы, иначе потеряем this
     }
-    // Для сбора конечного url можно сделать отдельный метод классаee
+    // Для сбора конечного url можно сделать отдельный метод классe
     _makeUrl(endpoint) {
         return `${this._baseUrl}${endpoint}`;
     }
@@ -35,6 +36,10 @@ class Api {
             .then(this._checkResponce);
     }
     // тут дальше пиши другие методы
+
+    _request(url, options) {
+      return fetch(url, options).then(this._handleResponse)
+    }
 
     requestOrderDetails(idList) {
         const options = {

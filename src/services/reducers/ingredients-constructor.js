@@ -2,7 +2,7 @@ import { SET_BUN, ADD_INGREDIENT, DELETE_INGREDIENT, MOVE_INGREDIENT} from '../a
 
 export const ingredientsConstructorState = {
     ingredientsList: [], // список элементов конструктора
-    bun: null
+    bun: []
   }
 
 export const constructorListReducer = (state = ingredientsConstructorState, action) => {
@@ -10,7 +10,8 @@ export const constructorListReducer = (state = ingredientsConstructorState, acti
         case SET_BUN: {
             return {
                 ...state,
-                bun: action.payload
+                bun:  state.bun.find(item => item._id === action.payload._id) ? 
+                [...state.bun] : [action.payload]
             }
         }
         case ADD_INGREDIENT: {
