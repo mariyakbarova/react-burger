@@ -11,17 +11,17 @@ import { setIngredientsDetails } from "../../services/actions/ingredient-details
 
 export default function IngredientCard({ ingredient }) {
 
-  // const elements = useSelector(
-  //   (state) => state.constructorList.constructorList
-  // );
-  // const buns = useSelector((state) => state.constructorList.bun);
+  const ingredients = useSelector(
+    (state) => state.constructorList.constructorList
+  );
+  const buns = useSelector((state) => state.constructorList.bun);
 
-  // const count = useMemo(
-  //   () =>
-  //     elements.filter((element) => element._id === ingredient._id).length ||
-  //     buns.filter((element) => element._id === ingredient._id).length * 2,
-  //   [buns, elements, ingredient._id]
-  // );
+  const count = useMemo(
+    () =>
+      ingredients.filter((item) => item._id === ingredient._id).length ||
+      buns.filter((item) => item._id === ingredient._id).length * 2,
+    [buns, ingredients, ingredient._id]
+  );
 
   const dispatch = useDispatch();
   const handleIngredientClick = () => {
@@ -30,7 +30,7 @@ export default function IngredientCard({ ingredient }) {
 
   const [, dragIngredient] = useDrag(
     () => ({
-      type: 'card',
+      type: "card",
       item: {
         ingredient,
         id: ingredient._id,
@@ -46,11 +46,10 @@ export default function IngredientCard({ ingredient }) {
       onClick={handleIngredientClick}
       ref={dragIngredient}
     >
-      {/* {count > 0 ? (
-        <Counter id={ingredient._id} count={count} size="small" />
-      ) : null} */}
       <img className="ml-4 mr-4" src={ingredient.image} alt={ingredient.name} />
-      <Counter id={ingredient._id} size="small" />
+      {count > 0 ? (
+        <Counter id={ingredient._id} count={count} size="small" />
+      ) : null}
       <div className={`${styles.price} mt-2 mb-2`}>
         <p className="text text_type_digits-default mr-2">{ingredient.price}</p>
         <CurrencyIcon type="primary" />
@@ -59,7 +58,7 @@ export default function IngredientCard({ ingredient }) {
         {ingredient.name}
       </p>
     </button>
-  ); 
+  );
 }
 
 IngredientCard.propTypes = {

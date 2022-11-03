@@ -1,0 +1,22 @@
+
+
+.generateList {
+    text-decoration: none;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+    gap: 16px;
+    align-items: end;
+    padding: 0;
+    margin: 0;
+    
+}
+
+.listContent {
+    display: grid;
+    grid-template-columns: max-content 536px;
+    gap: 8px;
+    align-items: center;
+}

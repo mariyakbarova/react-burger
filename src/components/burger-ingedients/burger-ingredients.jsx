@@ -51,7 +51,7 @@ function BurgerIngredientsFunction() {
       {
         root: containerRef.current,
         rootMargin: '0px 0px -90% 0px',
-        threshold: .7,
+        // threshold: .7,
       }
     );
     observer.observe(bunsRef.current);

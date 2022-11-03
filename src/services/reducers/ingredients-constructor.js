@@ -44,24 +44,24 @@ export const constructorListReducer = (state = ingredientsConstructorState, acti
             } else if (start > end) {
 
                 res = [
-                    ...state.ingredientsList.slice(0, end),
-                    state.ingredientsList[start],
-                    ...state.ingredientsList.slice(end, start),
-                    ...state.ingredientsList.slice(start +1)
+                    ...state.constructorList.slice(0, end),
+                    state.constructorList[start],
+                    ...state.constructorList.slice(end, start),
+                    ...state.constructorList.slice(start +1)
                 ];
             } else { // start < end
 
                 res = [
-                    ...state.ingredientsList.slice(0, start),
-                    ...state.ingredientsList.slice(start + 1, end),
-                    state.ingredientsList[start],
-                    ...state.ingredientsList.slice(end)
+                    ...state.constructorList.slice(0, start),
+                    ...state.constructorList.slice(start + 1, end + 1),
+                    state.constructorList[start],
+                    ...state.constructorList.slice(end + 1)
                 ]
             }
 
             return {
                 ...state,
-                ingredientsList: res
+                constructorList: res
             }
         }
 
