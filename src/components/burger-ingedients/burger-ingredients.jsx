@@ -84,8 +84,4 @@ function BurgerIngredientsFunction() {
   );
 }
 
-// BurgerIngredients.propTypes = {
-//   ingredients: PropTypes.arrayOf(ingredientType).isRequired,
-// };
-
 export const BurgerIngredients = React.memo(BurgerIngredientsFunction);

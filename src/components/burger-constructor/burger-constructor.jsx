@@ -124,6 +124,3 @@ export default function BurgerConstructor({ onClick }) {
   );
 }
 
-// {ConstructorElement.ingredient.type = 'top'? ConstructorElement.ingredient.text = {`${ingredient.name} +'верх'`}
-// :
-//            ConstructorElement.ingredient.text = {`${ingredient.name} +'низ'`}}
