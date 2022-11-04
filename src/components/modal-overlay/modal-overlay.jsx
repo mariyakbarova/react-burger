@@ -9,8 +9,6 @@ export default function ModalOverlay ({ onClose }) {
     }
 
     return (
-        <div className={styles.modalOverlay} onClick={closeModalOverlay}>
-            
-        </div>
+        <div className={styles.modalOverlay} onClick={closeModalOverlay} />
     )
 }

@@ -1,4 +1,4 @@
-import { apiConfig } from "../burger.config";
+import { apiConfig } from "../../utils/burger.config";
 
 class Api {
     constructor({ baseUrl, ingredients, defaultHeaders, order }) {

@@ -4,7 +4,6 @@ import styles from './burger-ingredients-tab.module.css'
 export default function BurgerIngredientsTab({onClick, activeTab}) {
 
   return (
-    <>
       <div className={styles.ingredientsSort}>
         <Tab value="bun" active={activeTab === "bun"} onClick={() => onClick('bun')} >
           Булки
@@ -17,7 +16,5 @@ export default function BurgerIngredientsTab({onClick, activeTab}) {
         </Tab>
       </div>
  
-    </>
   );
 }
-// onClick={setCurrent}
